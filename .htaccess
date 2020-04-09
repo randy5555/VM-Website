@@ -1,0 +1,25 @@
+Order Deny,Allow
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule .+ - [L]
+
+
+RewriteRule ^(\w+)/([\-\_a-zA-Z0-9]+)/([\-\_a-zA-Z0-9]+)/?$ index.php?module=$1&action=$2&record=$3&%{QUERY_STRING} [L]
+
+RewriteRule ^(\w+)/([\-\_a-zA-Z0-9]+)/?$ index.php?module=$1&action=$2&%{QUERY_STRING} [L]
+
+RewriteRule ^(\w+)/?$ index.php?module=$1&%{QUERY_STRING} [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+Header always append X-FRAME-OPTIONS SAMEORIGIN
+Header set X-XSS-Protection "1; mode=block"
+Header set Strict-Transport-Security "max-age=86400; includeSubDomains"
+Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+RedirectMatch 404 /\.git

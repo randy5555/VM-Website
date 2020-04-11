@@ -248,7 +248,16 @@ figure[mbr-media-size] {
 
 .card {
   background-color: transparent;
+  }
+
+.card-nb {
   border: none; }
+
+.card-white {
+  background-color: white;
+border-bottom: 4px; 
+   }
+
 
 .card-box {
   width: 100%; }
@@ -377,6 +386,12 @@ nav .mbr-section-btn {
   min-height: 100vh;
   padding-top: 3rem;
   padding-bottom: 3rem; }
+
+.mbr-halfscreen {
+  min-height: 20vh;
+  padding-top: 5rem;
+   }
+
 
 /*! Map */
 .map {

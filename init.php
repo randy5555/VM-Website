@@ -14,7 +14,8 @@ $dbh = new dbpdo($config);
 if(substr($root_directory,-1) != "/") { $root_directory.="/"; }
 if(substr($site_URL,-1) != "/") { $site_URL.="/"; }
 $dir_theme = "templates";
-$path_theme = "templates";
+$path_theme = $site_URL."templates";
+
 
 /*system classes*/
 require_once "php/system/common.php";

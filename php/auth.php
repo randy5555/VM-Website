@@ -21,7 +21,7 @@ if(Request::issetRequest("auth")) {
 			$_SESSION["password"] = $current_user->getHash($_REQUEST["password"]);
 			$is_authenticated = true;
 			
-			session_set_cookie_params($auth_cookie_expiration_length,'/',"",isset($_SERVER["HTTPS"]), true);
+			//session_set_cookie_params($auth_cookie_expiration_length,'/',"",isset($_SERVER["HTTPS"]), true);
 			session_regenerate_id(true);
 			$current_user->addLoginHistory();
 			if(Request::issetRequest("Location") && $_REQUEST["Location"] != "") {

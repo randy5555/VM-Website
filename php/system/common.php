@@ -112,6 +112,15 @@ class common {
 		$js_array = json_encode($array);
 		return "var $JS_VarName = ". $js_array . ";\n";
 	}
-
+	public static function getCSRF() {
+		rand(100,32733) * 61331;
+	}
+	
+	public static function validateCSRF($tok) {
+		if(is_integer($tok) && ($tok % 61331) == 0) {
+			return true;
+		}
+		return false;
+	}
 	
 }

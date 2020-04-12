@@ -11,8 +11,8 @@ if(Request::issetRequest("auth")) {
 	$current_user = new Users($req_username);
 	
 	if(filter_var($req_username, FILTER_VALIDATE_EMAIL)) {
-		$_SESSION["auth_failed"] = "Invalid Username or Password.";
-		
+		$_SESSION["auth_failed"] = "Invalid Username or Password..";
+		die();
 		header('Location: '.$site_URL."login");
 		exit();
 	}
@@ -22,7 +22,7 @@ if(Request::issetRequest("auth")) {
 			$is_authenticated = true;
 			
 			session_set_cookie_params($auth_cookie_expiration_length,'/',"",isset($_SERVER["HTTPS"]), true);
-                     session_regenerate_id(true);
+			session_regenerate_id(true);
 			$current_user->addLoginHistory();
 			if(Request::issetRequest("Location") && $_REQUEST["Location"] != "") {
 				$loc = ltrim(parse_url(urldecode($_REQUEST["Location"]), PHP_URL_PATH),'/');
@@ -38,7 +38,7 @@ if(Request::issetRequest("auth")) {
 			$current_user->authenticated=false;
 			$is_authenticated = false;
 			
-			$_SESSION["auth_failed"] = "Invalid Username or Password.";
+			$_SESSION["auth_failed"] = "Invalid Username or Password.1";
 			header('Location: '.$site_URL."login");
 			exit();
 		}
@@ -71,7 +71,7 @@ if(Request::issetRequest("auth")) {
 		} else {
 			$is_authenticated = false;
 			$current_user->authenticated = false;
-			$_SESSION["auth_failed"] = "Invalid Username or Password.";
+			$_SESSION["auth_failed"] = "Invalid Username or Password.2";
 		}
 	}
 	if(!$is_authenticated && isset($_COOKIE["username"]) && $_COOKIE["username"] != "" && isset($_COOKIE["cookiekey"]) && $_COOKIE["cookiekey"] != "") {

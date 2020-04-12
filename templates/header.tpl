@@ -43,7 +43,7 @@
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="/">
-                         <img src="/images/vm-temp-122x122.png?" alt="Mobirise" title="" style="height: 3.8rem;">
+                         <img src="/images/vm-temp-122x122.png" alt="Mobirise" title="" style="height: 3.8rem;">
                     </a>
                 </span>
                 <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="/">
@@ -62,9 +62,27 @@
                         <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
                         About Us
                     </a>
-                </li></ul>
+                </li>
+                {if $is_authenticated}
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="/">
+                        <span class="mbri-setting3 mbr-iconfont mbr-iconfont-btn"></span>
+                        {$username}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="/?logout">
+                        <span class="mbri-logout mbr-iconfont mbr-iconfont-btn"></span>
+                        Logout
+                    </a>
+                </li>
+                {/if}
+            </ul>
+            {if $is_authenticated eq false}
             <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="/login">
                     <font face="MobiriseIcons"><br></font>Login<br></a></div>
+            {/if}
+            
         </div>
     </nav>
 </section>

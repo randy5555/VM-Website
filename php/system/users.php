@@ -13,7 +13,7 @@ class Users {
 	function Users($username="") {
 		global $dbh;
 		if($username != "") {
-			$sql = "select * from `accounts` left join `accounts_settings` using (`id`) where `username`=?";
+			$sql = "select * from `accounts` where `username`=?";
 			$row = $dbh->getSingle($sql,array($username));
 			if($row !== false) {
 				$this->data = $row;
@@ -131,7 +131,7 @@ class Users {
 	}
 
 	function authenticate($password) {
-		if($password == $this->data["pass"]) {
+		if($password == $this->data["pass"]) { 
 			$valid = true;
 			if($valid) {
 				$this->authenticated = true;
@@ -164,7 +164,7 @@ class Users {
         
 	
 	function valid_pass($candidate) {
-		$r1='/[A-Z]/';  //Uppercase
+		/*$r1='/[A-Z]/';  //Uppercase
 		$r2='/[a-z]/';  //lowercase
 		$r3='/[!@#$%^&*()\-_=+{};:,<.>]/';  // whatever you mean by 'special char'
 		$r4='/[0-9]/';  //numbers
@@ -187,7 +187,7 @@ class Users {
 		if(preg_match_all($r4,$candidate, $o) < 1) {
 			$this->setErrorMessage('Password policy failure, at least one number.');
 			return FALSE;
-		}
+		}*/
 
 		if(strlen($candidate) < 8) {
 			$this->setErrorMessage('Password policy failure, must be at least 8 characters in length.');

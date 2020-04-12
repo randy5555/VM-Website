@@ -4,18 +4,18 @@
     </div>
 
     <div class="container">   
+        <div class="row">
         <div class="col-md-12">
-            <div class="media-container-row">
-		{if isset($register_message) && $register_message neq ""}
+            {if isset($login_message) && $login_message neq ""}
 		<div class="col-md-12">
 			<div class="col-md-12">
 				<div class="alert alert-warning">
-					 {$register_message}
+					 {$login_message}
 				</div>
 			</div>
 		</div>
 		{/if}
-
+            <div class="media-container-row">
                 <div class="mbr-figure m-auto" style="width: 55%;">
                     <img src="/images/mbr-analityka-big.jpg" >
                 </div>
@@ -26,6 +26,8 @@
                     </div>
 
                     <div class="block-content">
+                        <form action="/" method="post" class='form form-horizontal validate-form' style='margin-bottom: 0;' id="loginform" name="loginform">
+                            <input type="hidden" name="auth" value="true"/>
                         <div class="card card-nb p-3 pr-3">
                             <div class="media">
                                      
@@ -36,7 +38,7 @@
 
                             <div class="card-box">
 					<div class="input-group input-group-sm mb-3">
-						<input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="login_username" nam="login_username">
+						<input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="username" name="username">
 					</div>
                             </div>
                         </div>
@@ -52,13 +54,15 @@
 
                             <div class="card-box">
                                 <div class="input-group input-group-sm mb-3">
-						<input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="login_username" nam="login_password">
+						<input type="password" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="password" name="password">
 					</div>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div> 
         </div> 
     </div>          
 </section>
@@ -72,9 +76,17 @@
                 
             </div>
             <div class="media-container-column col-12 col-lg-3 col-md-4">
-                <div class="mbr-section-btn align-right py-4"><a class="btn btn-primary display-4" onclick="">SUBMIT</a></div>
+                <div class="mbr-section-btn align-right py-4"><a class="btn btn-primary display-4" onclick="loginSubmit()">SUBMIT</a></div>
             </div>
         </div>
     </div>
 </section>
+<script>
+{literal}
+function loginSubmit() {
+	$( "#loginform" ).submit();
+}
+
+{/literal}
+</script>
 {/nocache}

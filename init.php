@@ -26,3 +26,4 @@ require_once "php/lib/class_smarty.php";
 require_once "php/lib/class_dhrest.php";
 require_once "php/lib/class_dhes.php";
 $smarty = new crmSmarty();
+$common = new common();

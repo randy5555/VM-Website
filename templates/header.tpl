@@ -50,8 +50,12 @@
                         Analog Ocean</a></span>
             </div>
         </div>
+    
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
+            
+            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                {if $is_authenticated eq false}
+                <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="/">
                         <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
                         Services
@@ -63,7 +67,13 @@
                         About Us
                     </a>
                 </li>
+                {/if}
                 {if $is_authenticated}
+                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="/account/create">
+                    <font face="MobiriseIcons"><br></font>Create VM<br></a></div>
+                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="/account/manage">
+                    <font face="MobiriseIcons"><br></font>Manage VMs<br></a></div>
+                    
                 <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="/account/settings">
                         <span class="mbri-setting3 mbr-iconfont mbr-iconfont-btn"></span>

@@ -1586,6 +1586,44 @@ section.lazy-placeholder:after {
   height: 100%;
   background: #ffffff;
 }
+
+
+.cid-rVY52zhta2 h4 {
+  width: 85%;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.cid-rVY52zhta2 p {
+  color: #767676;
+}
+.cid-rVY52zhta2 .card-wrapper {
+  border-top: 1px solid #efefef;
+  background-color: #ffffff;
+  position: relative;
+  justify-content: unset;
+}
+.cid-rVY52zhta2 .card-wrapper .card-box {
+  padding: 2rem;
+  width: 100%;
+}
+.cid-rVY52zhta2 .card-wrapper .card-box .top-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cid-rVY52zhta2 .card-wrapper .card-box .bottom-line {
+  width: 85%;
+}
+@media (max-width: 767px) {
+  .cid-rVY52zhta2 .card-wrapper .card-box .bottom-line {
+    width: 100%;
+  }
+  .cid-rVY52zhta2 .card-wrapper .card-box .bottom-line p {
+    text-align: center;
+    margin: 1rem 0 0 0;
+  }
+}
+
 .cid-rSMmZ0HTos .card-wrapper .card-box {
   padding: 0 2rem 2rem;
 }

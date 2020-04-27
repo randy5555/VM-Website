@@ -249,6 +249,10 @@ figure[mbr-media-size] {
 .card {
   background-color: transparent;
   }
+  
+  .card-whitenb {
+  background-color: #ffffff; 
+  }
 
 .card-nb {
   border: none; }

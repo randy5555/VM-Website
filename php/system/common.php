@@ -113,14 +113,18 @@ class common {
 		return "var $JS_VarName = ". $js_array . ";\n";
 	}
 	public static function getCSRF() {
-		rand(100,32733) * 61331;
+		return rand(100,32733) * 51331;
 	}
 	
 	public static function validateCSRF($tok) {
-		if(is_integer($tok) && ($tok % 61331) == 0) {
+		if(is_numeric($tok) && ($tok % 51331) == 0) {
 			return true;
 		}
 		return false;
+	}
+	
+	public static function sendraw($host, $port, $data) {
+		
 	}
 	
 }

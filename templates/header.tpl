@@ -21,6 +21,7 @@
 <link href="{$theme_dir}/assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
 <link href="{$theme_dir}/assets/stylesheets/mbr-additional.css" rel="stylesheet" type="text/css" />
 <link href="{$theme_dir}/assets/stylesheets/custom.css" rel="stylesheet" type="text/css" />
+<link href="{$theme_dir}/assets/stylesheets/data-tables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>

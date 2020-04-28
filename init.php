@@ -20,7 +20,7 @@ $path_theme = $site_URL."templates";
 /*system classes*/
 require_once "php/system/common.php";
 require_once "php/system/users.php";
-
+require_once "php/system/vm.php";
 
 /*smarty and cache objects*/
 require_once "php/lib/class_smarty.php";

@@ -10,8 +10,16 @@
             
             <div class="title pb-5 col-12">
                 <h2 class="align-left mbr-fonts-style m-0 display-1">Create Virtual Machine</h2>
-                
             </div>
+            {if isset($error_message) && $error_message neq ""}
+            <div class="col-md-12">
+                    <div class="col-md-12">
+                            <div class="alert alert-warning">
+                                     {$error_message}
+                            </div>
+                    </div>
+            </div>
+            {/if}
             <form action="/account/create" method="post" class='form form-horizontal col-lg-12' style='margin-bottom: 0;' id="createform">
                 <input type="hidden" name="create_vm" value="true">
                 <input type="hidden" name="csrf" value="{$csrf_token}">
@@ -89,14 +97,14 @@
                             <div class="col-sm-10">
                                 <select class="custom-select my-1 mr-sm-2" id="create_disk" name='create_disk'>
                                     <option selected>Choose...</option>
-                                    <option value="1">18GB vDisk</option>
-                                    <option value="2">25GB vDisk</option>
-                                    <option value="3">30GB vDisk</option>
-                                    <option value="4">40GB vDisk</option>
-                                    <option value="6">55GB vDisk</option>
-                                    <option value="8">75GB vDisk</option>
-                                    <option value="12">100GB vDisk</option>
-                                    <option value="16">250GB vDisk</option>
+                                    <option value="18">18GB vDisk</option>
+                                    <option value="25">25GB vDisk</option>
+                                    <option value="30">30GB vDisk</option>
+                                    <option value="40">40GB vDisk</option>
+                                    <option value="55">55GB vDisk</option>
+                                    <option value="75">75GB vDisk</option>
+                                    <option value="100">100GB vDisk</option>
+                                    <option value="250">250GB vDisk</option>
                                 </select>
                             </div>
                         </div>

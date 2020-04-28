@@ -41,7 +41,7 @@
             <div class="media-container-row mbr-white">
                 <div class="col-sm-6 copyright">
                     <p class="mbr-text mbr-fonts-style display-7">
-                        © Copyright 2020 Bigital Bocean - All Rights Reserved
+                        ï¿½ Copyright 2020 Bigital Bocean - All Rights Reserved
                     </p>
                 </div>
                 <div class="col-md-6">
@@ -100,6 +100,8 @@
 <script src="{$theme_dir}/assets/javascripts/jquery.touch-swipe.min.js"></script>
 <script src="{$theme_dir}/assets/javascripts/smooth-scroll.js"></script>
 <script src="{$theme_dir}/assets/javascripts/script.js"></script>
+<script src="{$theme_dir}/assets/javascripts/jquery.data-tables.min.js"></script>
+<script src="{$theme_dir}/assets/javascripts/data-tables.bootstrap4.min.js"></script>
 
 {literal}
 <script language="javascript">

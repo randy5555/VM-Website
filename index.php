@@ -43,22 +43,27 @@ if(!$is_authenticated && Request::issetPost("account_register")) {
 	$csrf = $_POST["csrf"];
 
 	$new_user = new Users();
-	if(common::validateCSRF($csrf)) {
-		$new_user->errorMessage = "Not valid.";
-	}
-	
-	if($new_user->register($reg_username, $reg_password1, $reg_password2, $reg_email1, $reg_email2)!==false) {
-		$_SESSION["new_login"] = true;
-		$register_error = "";
-		header("Location: {$site_URL}login");
-	} else {
-		$register_error = $new_user->errorMessage;
+	if(!common::validateCSRF($csrf)) {
+		$register_error = $new_user->errorMessage = "Not valid.";
 		$action = "home";
 		$module = "register";
-		
+
 		$smarty->assign("reg_username",$reg_username);
 		$smarty->assign("reg_email1",$reg_email1);
-	}	
+	} else {
+		if($new_user->register($reg_username, $reg_password1, $reg_password2, $reg_email1, $reg_email2)!==false) {
+			$_SESSION["new_login"] = true;
+			$register_error = "";
+			header("Location: {$site_URL}login");
+		} else {
+			$register_error = $new_user->errorMessage;
+			$action = "home";
+			$module = "register";
+
+			$smarty->assign("reg_username",$reg_username);
+			$smarty->assign("reg_email1",$reg_email1);
+		}
+	}
 } else {
 	$register_error = "";
 }

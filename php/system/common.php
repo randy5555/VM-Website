@@ -123,8 +123,13 @@ class common {
 		return false;
 	}
 	
-	public static function sendraw($host, $port, $data) {
-		
+	public static function sendraw($host, $port, $message) {
+		$socket = socket_create(AF_INET, SOCK_STREAM, 0);
+		$result = socket_connect($socket, $host, $port);
+		socket_write($socket, $message, strlen($message));
+		$result = socket_read ($socket, 1024);
+		socket_close($socket);
+		return $result;
 	}
 	
 }

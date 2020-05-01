@@ -28,6 +28,25 @@ class account_ajax extends account_access implements ajax {
 	//Private functions here
 	
 	//User accessable functions here
+	function account_start_vm() {
+		echo "Error: Not implemented.";
+	}
+	
+	function account_stop_vm() {
+		echo "Error: Not implemented.";
+	}
+	
+	function account_shutdown_vm() {
+		echo "Error: Not implemented.";
+	}
+	
+	function account_destroy_vm() {
+		echo "Error: Not implemented.";
+	}
+	
+	function account_start_vm_console() {
+		echo "Error: Not implemented.";
+	}
 	
 	
 }

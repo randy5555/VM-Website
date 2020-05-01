@@ -7,7 +7,7 @@ $smarty->assign("account_instance_limit",$current_user->data["account_VMinstance
 $smarty->assign("account_username",$current_user->data["username"]);
 	
 if(!empty($record) && is_numeric($record)) {
-	$sql = "select v.vm_id as `vm_id`,vm_cpus,vm_ram,v.server_id as `server_id`,s.server_name,vm_name,disk_space from `vm` v left join `server` s on s.server_id = v.server_id left join `disk` d on d.vm_id = v.vm_id where v.account_id=? and v.vm_id=?";
+	$sql = "select v.vm_id as `vm_id`,vm_cpus,vm_ram,v.server_id as `server_id`,s.server_name,vm_name,disk_space,vm_status from `vm` v left join `server` s on s.server_id = v.server_id left join `disk` d on d.vm_id = v.vm_id where v.account_id=? and v.vm_id=?";
 	$sth = $dbh->run($sql,array($current_user->id, (int)$record));
 	$vm = null;
 	while($row = $dbh->fetch($sth)) {
@@ -17,7 +17,7 @@ if(!empty($record) && is_numeric($record)) {
 	
 	$smarty->display("account/manage_detail.tpl");
 } else {
-	$sql = "select v.vm_id,vm_cpus,vm_ram,v.server_id,s.server_name,vm_name,disk_space from `vm` v left join `server` s on s.server_id = v.server_id left join `disk` d on d.vm_id = v.vm_id where v.account_id=?";
+	$sql = "select v.vm_id,vm_cpus,vm_ram,v.server_id,s.server_name,vm_name,disk_space,vm_status from `vm` v left join `server` s on s.server_id = v.server_id left join `disk` d on d.vm_id = v.vm_id where v.account_id=? and v.vm_status != 'destroyed'";
 	$sth = $dbh->run($sql,array($current_user->id));
 	$vms = array();
 	while($row = $dbh->fetch($sth)) {

@@ -7,7 +7,7 @@
             
     </div>
     <div class="container card card-whitenb">
-            CPU: {$vm.vm_cpus}vCPU | RAM: {$vm.vm_ram}GB | Disk: {$vm.disk_space}GB
+        <p>CPU: {$vm.vm_cpus}vCPU | RAM: {$vm.vm_ram}GB | Disk: {$vm.disk_space}GB | Current Status: {if $vm.vm_status eq 'off'}<span class='text-orange'><b>Powered Off</b></span>{elseif $vm.vm_status eq 'on'}<span class='text-green'><b>On</b></span>{elseif $vm.vm_status eq 'destroyed'}<span class='text-red'><b>Destroyed</b></span>{/if}</p>
     </div>
     <div class="table-wrapper">
         <div class="container align-center pb-3 display-2">
@@ -28,6 +28,7 @@
 </section>
 <script>
 {literal}
+
 
 {/literal}
 </script>

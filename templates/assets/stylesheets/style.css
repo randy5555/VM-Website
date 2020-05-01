@@ -1086,3 +1086,15 @@ body {
 	top: 0;
 	left: -2400px;
 }
+
+.text-orange {
+    color: #fd7e14;
+}
+
+.text-red {
+    color: red;
+}
+
+.text-green {
+    color: greenyellow;
+}

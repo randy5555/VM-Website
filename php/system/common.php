@@ -124,7 +124,9 @@ class common {
 	}
 	
 	public static function sendraw($host, $port, $message) {
+		$message = $message . "\n";
 		$socket = socket_create(AF_INET, SOCK_STREAM, 0);
+		socket_set_option($socket,SOL_SOCKET, SO_RCVTIMEO, array("sec"=>10, "usec"=>0));
 		$result = socket_connect($socket, $host, $port);
 		//die(socket_strerror(socket_last_error()));
 		socket_write($socket, $message, strlen($message));

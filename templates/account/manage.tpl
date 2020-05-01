@@ -36,11 +36,10 @@
 
             <tbody>
                 {foreach key=type item=data from=$vms}
+                    <tr role="row" class="odd"> 
                 <td class="body-item mbr-fonts-style display-7 sorting_1">{$data.vm_name}</td><td class="body-item mbr-fonts-style display-7 sorting_1">{if $data.vm_status eq 'off'}<span class='text-orange'><b>Powered Off</b></span>{elseif $data.vm_status eq 'on'}<span class='text-green'><b>On</b></span>{elseif $data.vm_status eq 'destroyed'}<span class='text-red'><b>Destroyed</b></span>{/if}</td><td class="body-item mbr-fonts-style display-7">{$data.vm_ram} GB</td><td class="body-item mbr-fonts-style display-7">{$data.vm_cpus} vCPU</td><td class="body-item mbr-fonts-style display-7">{$data.disk_space} GB</td><td class="body-item mbr-fonts-style display-7">{$data.server_name}</td><td class="body-item mbr-fonts-style display-7"><a href='/account/manage/{$data.vm_id}'>Manage</a></td>
+                </tr>
                 {/foreach}
-            <tr role="row" class="odd"> 
-              
-            </tr>
             </tbody>
           </table></div></div><div class="dataTables_info display-7" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 entries</div></div>
         </div>

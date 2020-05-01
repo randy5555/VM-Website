@@ -85,10 +85,13 @@ class account_ajax extends account_access implements ajax {
 	}
 	
 	function account_destroy_vm() {
+		global $dbh;
 		$vm_id = Request::get("vm_id",false,"get");
 		if($this->_cando($vm_id)) {
 			$r = vm::delete($vm_id);
 			if($r == true) {
+				$sql = "from `vm` where vm_id = ? AND account_id =?";
+				$sth = $dbh->run($sql,array($vm_id, $this->current_user->id));
 				echo "success";
 			} else {
 				echo "Error: This action failed.";

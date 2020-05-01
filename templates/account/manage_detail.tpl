@@ -25,7 +25,7 @@
                     
         <hr>
         
-        <div class="container card card-whitenb">
+        <div class="container card card-whitenb" style='min-height:250px'>
             Graphs - Not implemented yet!
         </div>
     </div>
@@ -33,7 +33,6 @@
 </section>
 <script>
 {literal}
-
 function vm_start(vm_id) {
     $.get("/ajax/account?ajax=true&method=account_start_vm&vm_id=" + vm_id, function(data) {
 		if(data == 'success') {

@@ -42,22 +42,32 @@ class vm {
 		return false;
 	}
 	
-	public static function delete() {
+	public static function delete($vm_id) {
+		global $dbh;
 		//todo
 		return false;
 	}
 	
-	public static function shutdown() {
+	public static function shutdown($vm_id) {
+		global $dbh;
 		//todo
 		return false;
 	}
 	
-	public static function stop() {
+	public static function stop($vm_id) {
+		global $dbh;
 		//todo
 		return false;
 	}
 	
-	public static function start() {
+	public static function start($vm_id) {
+		global $dbh;
+		//todo
+		return false;
+	}
+	
+	public static function startconsole($vm_id) {
+		global $dbh;
 		//todo
 		return false;
 	}

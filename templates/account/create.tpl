@@ -114,6 +114,45 @@
                     </div>
                 </div>
             </div>
+             <!--Card-4-->
+            <div class="card px-3 col-12 card-whitenb">
+                <div class="card-wrapper media-container-row media-container-row">
+                    <div class="card-box">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label card-title mbr-fonts-style display-5" for="create_os">Operating System</label>
+                            <div class="col-sm-10">
+                                <select class="custom-select my-1 mr-sm-2" id="create_os" name='create_os'>
+                                    <option selected>Choose...</option>
+                                    <option value="1">CentOS-7-x86_64-1908</option>
+                                    <option value="2">CentOS-8.1.1911-x86_64</option>
+                                    <option value="3">debian-10.3.0-amd64-netinst</option>
+                                    <option value="4">debian-9.12.0-amd64-netinst</option>
+                                    <option value="5">Fedora-Server--x86_64-31-1.9</option>
+                                    <option value="6">Fedora-Server--x86_64-32_Beta-1.2</option>
+                                    <option value="7">Fedora-Silverblue-ostree-x86_64-31-1.9</option>
+                                    <option value="8">Fedora-Workstation-Live-x86_64-31-1.9</option>
+                                    <option value="9">Fedora-Workstation-Live-x86_64-32_Beta-1.2</option>
+                                    <option value="10">FreeBSD-11.3-RELEASE-amd64-1</option>
+                                    <option value="11">FreeBSD-11.3-STABLE-amd64</option>
+                                    <option value="12">FreeBSD-12.1-RELEASE-amd64-1</option>
+                                    <option value="13">FreeBSD-13.0-CURRENT-amd64</option>
+                                    <option value="14">ubuntu-14.04.6-desktop-amd64</option>
+                                    <option value="15">ubuntu-14.04.6-server-amd64</option>
+                                    <option value="16">ubuntu-16.04.6-desktop-amd64</option>
+                                    <option value="17">ubuntu-16.04.6-server-amd64</option>
+                                    <option value="18">ubuntu-18.04.4-desktop-amd64</option>
+                                    <option value="19">ubuntu-19.10-desktop-amd64</option>
+                                    <option value="20">ubuntu-20.04-beta-desktop-amd64</option>
+                                    <option value="21">ubuntu-20.04-beta-live-server-amd64</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="bottom-line">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!--Card-5-->
             <div class="card px-3 col-12 card-whitenb">
                 <div class="card-wrapper media-container-row media-container-row">

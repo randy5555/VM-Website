@@ -20,6 +20,7 @@ if($is_authenticated && Request::issetPost("create_vm")) {
 		$create_cpu = Request::get("create_cpu",false,"post");
 		$create_disk = Request::get("create_disk",false,"post");
 		$create_server = Request::get("create_server",false,"post");
+		$create_os = Request::get("create_os",false,"post");
 		$csrf = $_POST["csrf"];
 
 		$new_user = new Users();
@@ -34,7 +35,7 @@ if($is_authenticated && Request::issetPost("create_vm")) {
 				$vmcnt = $row["cnt"];
 			}
 			if($vmcnt < $instance_limit) {
-				$r = vm::create($create_name, $create_ram, $create_cpu, $create_disk, $create_server, $current_user->id);
+				$r = vm::create($create_name, $create_ram, $create_cpu, $create_disk, $create_server, $current_user->id, $create_os);
 				if($r) {
 					header("Location: {$site_URL}account/manage");
 				} else {

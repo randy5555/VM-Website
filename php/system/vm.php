@@ -3,10 +3,13 @@ class vm {
 	public function __construct() {
 	}
 	
-	public static function create($name,$ram,$cpu,$disk,$server,$account_id) {
+	public static function create($name,$ram,$cpu,$disk,$server,$account_id, $os) {
+		if(empty($os) || empty($name) || empty($ram) || empty($cpu) || empty($disk) || empty($server)) {
+			return false;
+		}
 		global $dbh;
-		$sql = "INSERT INTO `vm` (`account_id`, `vm_cpus`, `vm_ram`, `server_id`, `vm_name`) VALUES (?, ?, ?, ?, ?)";
-		$sth = $dbh->run($sql,array($account_id,$cpu,$ram,$server, $name));
+		$sql = "INSERT INTO `vm` (`account_id`, `vm_cpus`, `vm_ram`, `server_id`, `vm_name`,`vm_os`) VALUES (?, ?, ?, ?, ?, ?)";
+		$sth = $dbh->run($sql,array($account_id,$cpu,$ram,$server, $name, $os));
 		
 		$vid = $dbh->lastInsertId();
 		$sql = "INSERT INTO `disk` (`vm_id`, `disk_space`, `disk_device_name`, `server_id`) VALUES (?, ?, ?, ?)";
@@ -26,7 +29,7 @@ class vm {
 		$params[] = "vm_".$vid;
 		$params[] = (string)$ram*1024;
 		$params[] = (string)$cpu;
-		$params[] = (string)"19";//Temp OS selection
+		$params[] = (string)$os;
 		$params[] = (string)($vid*2)+10000;
 		$params[] = (string)$disk;
 		$obj["params"] = $params;

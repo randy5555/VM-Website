@@ -42,10 +42,13 @@ class account_ajax extends account_access implements ajax {
 	
 	//User accessable functions here
 	function account_start_vm() {
+		global $dbh;
 		$vm_id = Request::get("vm_id",false,"get");
 		if($this->_cando($vm_id)) {
 			$r = vm::start($vm_id);
 			if($r == true) {
+				$sql = "update `vm` set `vm_status` = 'on' where vm_id = ? AND account_id =?";
+				$sth = $dbh->run($sql,array($vm_id, $this->current_user->id));
 				echo "success";
 			} else {
 				echo "Error: This action failed.";
@@ -57,10 +60,13 @@ class account_ajax extends account_access implements ajax {
 	}
 	
 	function account_stop_vm() {
+		global $dbh;
 		$vm_id = Request::get("vm_id",false,"get");
 		if($this->_cando($vm_id)) {
 			$r = vm::stop($vm_id);
 			if($r == true) {
+				$sql = "update `vm` set `vm_status` = 'off' where vm_id = ? AND account_id =?";
+				$sth = $dbh->run($sql,array($vm_id, $this->current_user->id));
 				echo "success";
 			} else {
 				echo "Error: This action failed.";
@@ -71,10 +77,13 @@ class account_ajax extends account_access implements ajax {
 	}
 	
 	function account_shutdown_vm() {
+		global $dbh;
 		$vm_id = Request::get("vm_id",false,"get");
 		if($this->_cando($vm_id)) {
 			$r = vm::shutdown($vm_id);
 			if($r == true) {
+				$sql = "update `vm` set `vm_status` = 'off' where vm_id = ? AND account_id =?";
+				$sth = $dbh->run($sql,array($vm_id, $this->current_user->id));
 				echo "success";
 			} else {
 				echo "Error: This action failed.";
@@ -90,7 +99,7 @@ class account_ajax extends account_access implements ajax {
 		if($this->_cando($vm_id)) {
 			$r = vm::delete($vm_id);
 			if($r == true) {
-				$sql = "from `vm` where vm_id = ? AND account_id =?";
+				$sql = "update `vm` set `vm_status` = 'destroyed' where vm_id = ? AND account_id =?";
 				$sth = $dbh->run($sql,array($vm_id, $this->current_user->id));
 				echo "success";
 			} else {

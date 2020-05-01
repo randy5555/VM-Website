@@ -24,17 +24,17 @@ class vm {
 		$obj["command"] = "defineVM";
 		$params = array();
 		$params[] = "vm_".$vid;
-		$params[] = (int)$ram*1024;
-		$params[] = (int)$cpu;
-		$params[] = 19;//Temp OS selection
-		$params[] = (int)($vid*2)+10000;
-		$params[] = (int)$disk;
+		$params[] = (string)$ram*1024;
+		$params[] = (string)$cpu;
+		$params[] = (string)"19";//Temp OS selection
+		$params[] = (string)($vid*2)+10000;
+		$params[] = (string)$disk;
 		$obj["params"] = $params;
 		
 		$msg = json_encode($obj);
 		//talk to java app
 		$r = common::sendraw($server_address, 9992, $msg);
-		$j = json_decode($r);
+		$j = json_decode($r, true);
 		if($j["Response"] == "Success") {
 			return true;
 		}
@@ -65,7 +65,7 @@ class vm {
 		$msg = json_encode($obj);
 		//talk to java app
 		$r = common::sendraw($server_address, 9992, $msg);
-		$j = json_decode($r);
+		$j = json_decode($r, true);
 		if($j["Response"] == "Success") {
 			return true;
 		}
@@ -83,7 +83,7 @@ class vm {
 		$msg = json_encode($obj);
 		//talk to java app
 		$r = common::sendraw($server_address, 9992, $msg);
-		$j = json_decode($r);
+		$j = json_decode($r, true);
 		if($j["Response"] == "Success") {
 			return true;
 		}
@@ -101,7 +101,7 @@ class vm {
 		$msg = json_encode($obj);
 		//talk to java app
 		$r = common::sendraw($server_address, 9992, $msg);
-		$j = json_decode($r);
+		$j = json_decode($r, true);
 		if($j["Response"] == "Success") {
 			return true;
 		}
@@ -120,7 +120,7 @@ class vm {
 		
 		//talk to java app
 		$r = common::sendraw($server_address, 9992, $msg);
-		$j = json_decode($r);
+		$j = json_decode($r, true);
 		if($j["Response"] == "Success") {
 			return true;
 		}

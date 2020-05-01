@@ -13,11 +13,11 @@ class vm {
 		$sth = $dbh->run($sql,array($vid,$disk,"/dev/vda",$server));
 		
 		$sql = "select `server_address` from server where `server_id` = ?";
-			$sth = $dbh->run($sql,array($server));
-			$server_address = "::1";
-			while($row = $dbh->fetch($sth)) {
-				$server_address = $row["server_address"];
-			}
+		$sth = $dbh->run($sql,array($server));
+		$server_address = "::1";
+		while($row = $dbh->fetch($sth)) {
+			$server_address = $row["server_address"];
+		}
 			
 		//construct object, serialise to json
 		$obj = array();
@@ -42,32 +42,93 @@ class vm {
 		return false;
 	}
 	
-	public static function delete($vm_id) {
+	private static function getServerAddress($vm_id) {
 		global $dbh;
-		//todo
+		
+		$sql = "select `server_address` from server s right join vm v on v.server_id = s.server_id where v.vm_id = ?";
+		$sth = $dbh->run($sql,array($vm_id));
+		$server_address = "::1";
+		while($row = $dbh->fetch($sth)) {
+			$server_address = $row["server_address"];
+		}
+		return $server_address;
+	}
+	
+	public static function delete($vm_id) {
+		$server_address = vm::getServerAddress($vm_id);
+		
+		$obj = array();
+		$obj["command"] = "undefineVM";
+		$params = array();
+		$params[] = "vm_".$vm_id;
+		$obj["params"] = $params;
+		$msg = json_encode($obj);
+		//talk to java app
+		$r = common::sendraw($server_address, 9992, $msg);
+		$j = json_decode($r);
+		if($j["Response"] == "Success") {
+			return true;
+		}
 		return false;
 	}
 	
 	public static function shutdown($vm_id) {
-		global $dbh;
-		//todo
+		$server_address = vm::getServerAddress($vm_id);
+		
+		$obj = array();
+		$obj["command"] = "shutdownVM";
+		$params = array();
+		$params[] = "vm_".$vm_id;
+		$obj["params"] = $params;
+		$msg = json_encode($obj);
+		//talk to java app
+		$r = common::sendraw($server_address, 9992, $msg);
+		$j = json_decode($r);
+		if($j["Response"] == "Success") {
+			return true;
+		}
 		return false;
 	}
 	
 	public static function stop($vm_id) {
-		global $dbh;
-		//todo
+		$server_address = vm::getServerAddress($vm_id);
+		
+		$obj = array();
+		$obj["command"] = "destroyVM";
+		$params = array();
+		$params[] = "vm_".$vm_id;
+		$obj["params"] = $params;
+		$msg = json_encode($obj);
+		//talk to java app
+		$r = common::sendraw($server_address, 9992, $msg);
+		$j = json_decode($r);
+		if($j["Response"] == "Success") {
+			return true;
+		}
 		return false;
 	}
 	
 	public static function start($vm_id) {
-		global $dbh;
-		//todo
+		$server_address = vm::getServerAddress($vm_id);
+		
+		$obj = array();
+		$obj["command"] = "startVM";
+		$params = array();
+		$params[] = "vm_".$vm_id;
+		$obj["params"] = $params;
+		$msg = json_encode($obj);
+		
+		//talk to java app
+		$r = common::sendraw($server_address, 9992, $msg);
+		$j = json_decode($r);
+		if($j["Response"] == "Success") {
+			return true;
+		}
 		return false;
 	}
 	
 	public static function startconsole($vm_id) {
-		global $dbh;
+		$server_address = vm::getServerAddress($vm_id);
 		//todo
 		return false;
 	}

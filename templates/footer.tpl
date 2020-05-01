@@ -8,7 +8,7 @@
             <div class="col-12 col-md-3">
                 <div class="media-wrap">
                     <a href="/">
-                        <img src="images/vm-temp-192x192.png" title="">
+                        <img src="/images/vm-temp-192x192.png" title="">
                     </a>
                 </div>
             </div>

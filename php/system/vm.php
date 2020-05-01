@@ -8,6 +8,7 @@ class vm {
 			return false;
 		}
 		global $dbh;
+		
 		$sql = "INSERT INTO `vm` (`account_id`, `vm_cpus`, `vm_ram`, `server_id`, `vm_name`,`vm_os`) VALUES (?, ?, ?, ?, ?, ?)";
 		$sth = $dbh->run($sql,array($account_id,$cpu,$ram,$server, $name, $os));
 		

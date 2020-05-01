@@ -36,7 +36,7 @@
 function vm_start(vm_id) {
     $.get("/ajax/account?ajax=true&method=account_start_vm&vm_id=" + vm_id, function(data) {
 		if(data == 'success') {
-			location.href=location.href;
+			setInterval('location.reload()', 5000);
 		} else {
 			alert(data);
 			
@@ -47,7 +47,7 @@ function vm_start(vm_id) {
 function vm_stop(vm_id) {
     $.get("/ajax/account?ajax=true&method=account_stop_vm&vm_id=" + vm_id, function(data) {
 		if(data == 'success') {
-			location.href=location.href;
+			setInterval('location.reload()', 5000);
 		} else {
 			alert(data);
 			
@@ -58,7 +58,7 @@ function vm_stop(vm_id) {
 function vm_shutdown(vm_id) {
     $.get("/ajax/account?ajax=true&method=account_shutdown_vm&vm_id=" + vm_id, function(data) {
 		if(data == 'success') {
-			location.href=location.href;
+			setInterval('location.reload()', 5000);
 		} else {
 			alert(data);
 			
@@ -69,7 +69,7 @@ function vm_shutdown(vm_id) {
 function vm_destroy(vm_id) {
     $.get("/ajax/account?ajax=true&method=account_destroy_vm&vm_id=" + vm_id, function(data) {
 		if(data == 'success') {
-			location.href=location.href;
+			setInterval('location.reload()', 5000);
 		} else {
 			alert(data);
 			
@@ -80,7 +80,7 @@ function vm_destroy(vm_id) {
 function vm_console(vm_id) {
     $.get("/ajax/account?ajax=true&method=account_start_vm_console&vm_id=" + vm_id, function(data) {
 		if(data == 'success') {
-			location.href=location.href;
+			setInterval('location.reload()', 5000);
 		} else {
 			alert(data);
 			

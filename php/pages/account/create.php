@@ -34,6 +34,7 @@ if($is_authenticated && Request::issetPost("create_vm")) {
 			while($row = $dbh->fetch($sth)) {
 				$vmcnt = $row["cnt"];
 			}
+			//todo: check that our space allocation or cpu limit for the server is not exceeded
 			if($vmcnt < $instance_limit) {
 				$r = vm::create($create_name, $create_ram, $create_cpu, $create_disk, $create_server, $current_user->id, $create_os);
 				if($r) {

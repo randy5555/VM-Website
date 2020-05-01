@@ -49,6 +49,7 @@ class account_ajax extends account_access implements ajax {
 			if($r == true) {
 				$sql = "update `vm` set `vm_status` = 'on' where vm_id = ? AND account_id =?";
 				$sth = $dbh->run($sql,array($vm_id, $this->current_user->id));
+				usleep(500*1000);
 				echo "success";
 			} else {
 				echo "Error: This action failed.";
@@ -67,6 +68,7 @@ class account_ajax extends account_access implements ajax {
 			if($r == true) {
 				$sql = "update `vm` set `vm_status` = 'off' where vm_id = ? AND account_id =?";
 				$sth = $dbh->run($sql,array($vm_id, $this->current_user->id));
+				usleep(500*1000);
 				echo "success";
 			} else {
 				echo "Error: This action failed.";
@@ -84,6 +86,7 @@ class account_ajax extends account_access implements ajax {
 			if($r == true) {
 				$sql = "update `vm` set `vm_status` = 'off' where vm_id = ? AND account_id =?";
 				$sth = $dbh->run($sql,array($vm_id, $this->current_user->id));
+				usleep(500*1000);
 				echo "success";
 			} else {
 				echo "Error: This action failed.";
@@ -101,6 +104,7 @@ class account_ajax extends account_access implements ajax {
 			if($r == true) {
 				$sql = "update `vm` set `vm_status` = 'destroyed' where vm_id = ? AND account_id =?";
 				$sth = $dbh->run($sql,array($vm_id, $this->current_user->id));
+				usleep(500*1000);
 				echo "success";
 			} else {
 				echo "Error: This action failed.";

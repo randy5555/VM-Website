@@ -77,7 +77,7 @@
 {literal}
 $(document).ready(function(){
 var chart = Highcharts.getJSON(
-    "/ajax/cpustats?ajax=true&method=cpustats_get&vm_id="+vm_id,
+    "/ajax/stats?ajax=true&method=cpustats_get&vm_id="+vm_id,
     function (data) {
 
         Highcharts.chart('container', {

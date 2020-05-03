@@ -145,7 +145,7 @@ class vm {
 		$r = common::sendraw($server_address, 9992, $msg);
 		$j = json_decode($r, true);
 		if($j["Response"] == "Success") {
-			return array("cpus"=>$j["cpus"],"time"=>($j["time"] / 1000000000));
+			return array("cpus"=>$j["cpus"],"time"=>((double)$j["time"] / (double)1000000000));
 		}
 		return array("cpus"=>0,"time"=>0);
 	}

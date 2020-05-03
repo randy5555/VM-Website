@@ -2,7 +2,7 @@
 require_once 'base/ajax.php';
 require_once 'base/account_access.php';
 
-class account_ajax extends account_access implements ajax {
+class stats_ajax extends account_access implements ajax {
 	
 	function __construct(&$current_user) {
 		parent::__construct($current_user);
@@ -51,7 +51,7 @@ class account_ajax extends account_access implements ajax {
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') { 
 	http_response_code(405); die();
 }
-$ajaxcall = new account_ajax($current_user);
+$ajaxcall = new stats_ajax($current_user);
 $ajaxcall->run();
 exit();
 

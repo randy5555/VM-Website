@@ -1,4 +1,42 @@
 {nocache}
+<style type="text/css">
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 360px; 
+    max-width: 100%;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+
+
+</style>
 <section class="services5 cid-qTkA127IK8 mbr-fullscreen mbr-parallax-background" id="services5-i">
 <div class="container container-table">
     <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
@@ -25,18 +63,92 @@
                     
         <hr>
         
-        <div class="container card card-whitenb" style='min-height:250px'>
-            Graphs - Not implemented yet!
+        <div class="container card card-whitenb" style='min-height:360px' id="chart1">
+            <figure class="highcharts-figure">
+            <div id="container"></div>
+            
+        </figure>
         </div>
     </div>
 </div>
 </section>
 <script>
+    var vm_id = '{$vm.vm_id}';
 {literal}
+$(document).ready(function(){
+var chart = Highcharts.getJSON(
+    "/ajax/cpustats?ajax=true&method=cpustats_get&vm_id="+vm_id,
+    function (data) {
+
+        Highcharts.chart('container', {
+            chart: {
+                zoomType: 'x',
+                width: $("#chart1").width()
+            },
+            title: {
+                text: 'CPU Usage Graph'
+            },
+            subtitle: {
+                text: document.ontouchstart === undefined ?
+                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+            yAxis: {
+                title: {
+                    text: 'CPU Usage Percentage'
+                },
+                min: 0,
+                max:100
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    marker: {
+                        radius: 2
+                    },
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    },
+                    threshold: null
+                }
+            },
+            
+
+            series: [{
+                type: 'area',
+                name: 'CPU Usage Percentage',
+                data: data
+            }]
+        });
+    }
+);
+chart.setSize($("#chart1").width(), 360, doAnimation = false);
+
+});
+
 function vm_start(vm_id) {
     $.get("/ajax/account?ajax=true&method=account_start_vm&vm_id=" + vm_id, function(data) {
 		if(data == 'success') {
-			setInterval('location.reload()', 5000);
+			setInterval('location.reload()', 4000);
 		} else {
 			alert(data);
 			

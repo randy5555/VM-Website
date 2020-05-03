@@ -131,6 +131,25 @@ class vm {
 		return false;
 	}
 	
+	public static function getCPUStat($vm_id) {
+		$server_address = vm::getServerAddress($vm_id);
+		
+		$obj = array();
+		$obj["command"] = "getCPUStats";
+		$params = array();
+		$params[] = "vm_".$vm_id;
+		$obj["params"] = $params;
+		$msg = json_encode($obj);
+		
+		//talk to java app
+		$r = common::sendraw($server_address, 9992, $msg);
+		$j = json_decode($r, true);
+		if($j["Response"] == "Success") {
+			return array("cpus"=>$j["cpus"],"time"=>($j["time"] / 1000000000));
+		}
+		return array("cpus"=>0,"time"=>0);
+	}
+	
 	public static function startconsole($vm_id) {
 		$server_address = vm::getServerAddress($vm_id);
 		//todo

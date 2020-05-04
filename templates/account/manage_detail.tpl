@@ -69,6 +69,13 @@
             
         </figure>
         </div>
+        
+        <div class="container card card-whitenb" style='min-height:360px' id="chart2">
+            <figure class="highcharts-figure">
+            <div id="container2"></div>
+            
+        </figure>
+        </div>
     </div>
 </div>
 </section>
@@ -141,7 +148,75 @@ var chart = Highcharts.getJSON(
         });
     }
 );
-chart.setSize($("#chart1").width(), 360, doAnimation = false);
+
+
+var chart2 = Highcharts.getJSON(
+    "/ajax/stats?ajax=true&method=ramstats_get&vm_id="+vm_id,
+    function (data) {
+
+        Highcharts.chart('container2', {
+            chart: {
+                zoomType: 'x',
+                width: $("#chart2").width()
+            },
+            title: {
+                text: 'RAM Usage Graph'
+            },
+            subtitle: {
+                text: document.ontouchstart === undefined ?
+                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+            yAxis: {
+                title: {
+                    text: 'RAM Usage Percentage'
+                },
+                min: 0,
+                max:100
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    marker: {
+                        radius: 2
+                    },
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    },
+                    threshold: null
+                }
+            },
+            
+
+            series: [{
+                type: 'area',
+                name: 'RAM Usage Percentage',
+                data: data
+            }]
+        });
+    }
+);
+//chart.setSize($("#chart1").width(), 360, doAnimation = false);
+//chart2.setSize($("#chart2").width(), 360, doAnimation = false);
 
 });
 

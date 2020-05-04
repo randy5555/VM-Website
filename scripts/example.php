@@ -7,6 +7,9 @@ include "init.php";
 
 $r = vm::getCPUStat(12);
 echo "cpus=".$r["cpus"].",".$r["time"];
+
+$r2 = vm::getRAMStat(12);
+echo print_r($r2);
 //example script
 
 //remove lockfile

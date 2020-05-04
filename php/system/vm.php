@@ -150,6 +150,25 @@ class vm {
 		return array("cpus"=>0,"time"=>0);
 	}
 	
+	public static function getRAMStat($vm_id) {
+		$server_address = vm::getServerAddress($vm_id);
+		
+		$obj = array();
+		$obj["command"] = "getMEMStats";
+		$params = array();
+		$params[] = "vm_".$vm_id;
+		$obj["params"] = $params;
+		$msg = json_encode($obj);
+		
+		//talk to java app
+		$r = common::sendraw($server_address, 9992, $msg);echo $r;
+		$j = json_decode($r, true);
+		if($j["Response"] == "Success") {
+			return array("total"=>$j["total"],"used"=>$j["used"],"percentage"=>$j["percentUsed"]);
+		}
+		return array("total"=>0,"used"=>0,"percentage"=>0);
+	}
+	
 	public static function startconsole($vm_id) {
 		$server_address = vm::getServerAddress($vm_id);
 		//todo

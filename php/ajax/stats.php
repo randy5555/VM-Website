@@ -45,6 +45,23 @@ class stats_ajax extends account_access implements ajax {
 		echo json_encode($data);
 	}
 	
+	function ramstats_get() {
+		global $dbh;
+		$vm_id = Request::get("vm_id",false,"get");
+		$sql = "select `percentage`,`time_index` from `vm_ram_stats`";
+		$sth = $dbh->run($sql,array($vm_id));
+		$data = array();
+		
+		while($row = $dbh->fetch($sth)) {
+			$series = array();
+			$series[] = ($row["time_index"]-3600*5)*1000;
+			$series[] = (float)$row["percentage"];
+			$data[] = $series;
+		}
+		
+		echo json_encode($data);
+	}
+	
 	
 	
 }

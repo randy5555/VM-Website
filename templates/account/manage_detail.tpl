@@ -39,9 +39,12 @@
 </style>
 <section class="services5 cid-qTkA127IK8 mbr-fullscreen mbr-parallax-background" id="services5-i">
 <div class="container container-table">
+    <div class="container"  style='min-height:30px'>
+            
+    </div>
     <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
           Virtual Machine: {$vm.vm_name}</h2>
-    <div class="container">
+    <div class="container" >
             
     </div>
     <div class="container card card-whitenb">
@@ -230,11 +233,16 @@ var chart2 = Highcharts.getJSON(
         Highcharts.chart('container3', {
     chart: {
         type: 'spline',
+        zoomType: 'x',
         width: $("#chart3").width()
     },
     title: {
         text: 'Network Statistics'
     },
+    subtitle: {
+                text: document.ontouchstart === undefined ?
+                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+     },
     xAxis: {
                 type: 'datetime'
             },

@@ -18,14 +18,16 @@ foreach ($vms as $key => $value) {
 	$t = time();
 	$timestamp = $t - (time() % 60);
 	
-	$sql = "select `rx_current`,`tx_current` from `vm_net_stats` where vm_id = ? order by `time_index` desc limit 1";
+	$sql = "select `rx_current`,`tx_current`,`time_index` from `vm_net_stats` where vm_id = ? order by `time_index` desc limit 1";
 	$sth = $dbh->run($sql,array($vid));
 	
 	$rx_prev = -1;
 	$tx_prev = -1;
+	$time_index = 0;
 	while($row = $dbh->fetch($sth)) {
 		$rx_prev = (int)$row["rx_current"];
 		$tx_prev = (int)$row["tx_current"];
+		$time_index = (int)$row["time_index"];
 	}
 	
 	$rx_now = (int)$r["rx"];
@@ -34,7 +36,7 @@ foreach ($vms as $key => $value) {
 	$rx_delta = 0;
 	$tx_delta = 0;
 	
-	if($rx_now < $rx_prev || $tx_now < $tx_prev || $rx_prev == -1 || $tx_prev == -1) {
+	if($rx_now < $rx_prev || $tx_now < $tx_prev || $rx_prev == -1 || $tx_prev == -1 || $time_index == 0 || $time_index - $timestamp > 60) {
 		$rx_delta = 0;
 		$tx_delta = 0;
 	} else {

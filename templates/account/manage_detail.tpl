@@ -86,6 +86,13 @@
             
         </figure>
         </div>
+        
+        <div class="container card card-whitenb" style='min-height:360px' id="chart4">
+            <figure class="highcharts-figure">
+            <div id="container4"></div>
+            
+        </figure>
+        </div>
     </div>
 </div>
 </section>
@@ -226,7 +233,7 @@ var chart2 = Highcharts.getJSON(
     }
 );
 
-var chart2 = Highcharts.getJSON(
+var chart3 = Highcharts.getJSON(
     "/ajax/stats?ajax=true&method=netstats_get&vm_id="+vm_id,
     function (data) {
 
@@ -253,8 +260,89 @@ var chart2 = Highcharts.getJSON(
         min: 0
     },
     tooltip: {
-        headerFormat: '<b>{series.name}</b><br>',
-        pointFormat: '{point.x:%e. %b}: {point.y:.2f} KB'
+        formatter: function () {
+            return this.points.reduce(function (s, point) {
+                return s + '<br/><span style="color:' + point.series.color + '">' + point.series.name + '</span>: ' + point.y.toFixed(2) + "KB";
+            }, '<b>' + Highcharts.dateFormat('%A, %b %e, %Y</b> %H:%M', this.x));
+        },
+        shared: true
+    },
+
+    plotOptions: {
+        series: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    colors: ['#6CF', '#06C', '#036', '#000'],
+
+    // Define the data points. All series have a dummy year
+    // of 1970/71 in order to be compared on the same x axis. Note
+    // that in JavaScript, months start at 0 for January, 1 for February etc.
+    series: data,
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 800
+            },
+            chartOptions: {
+                plotOptions: {
+                    series: {
+                        marker: {
+                            radius: 2.5
+                        }
+                    }
+                }
+            }
+        }]
+    }
+});
+    }
+);
+
+
+var chart4 = Highcharts.getJSON(
+    "/ajax/stats?ajax=true&method=diskstats_get&vm_id="+vm_id,
+    function (data) {
+
+        Highcharts.chart('container4', {
+    chart: {
+        type: 'spline',
+        zoomType: 'x',
+        width: $("#chart4").width()
+    },
+    title: {
+        text: 'Disk IO Statistics'
+    },
+    subtitle: {
+                text: document.ontouchstart === undefined ?
+                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+     },
+    xAxis: {
+                type: 'datetime'
+            },
+    yAxis: [{
+        title: {
+            text: 'Disk IO KB'
+        },
+        min: 0
+    },{
+        title: {
+            text: 'Disk IO Count'
+        },
+        min: 0,
+        opposite: true
+    }],
+    tooltip: {
+        formatter: function () {
+            return this.points.reduce(function (s, point) {
+                return s + '<br/><span style="color:' + point.series.color + '">' + point.series.name + '</span>: ' + point.y;
+            }, '<b>' + Highcharts.dateFormat('%A, %b %e, %Y</b> %H:%M', this.x));
+        },
+        shared: true
     },
 
     plotOptions: {

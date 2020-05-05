@@ -40,7 +40,7 @@ foreach ($vms as $key => $value) {
 	if($time_delta > 0) {
 		$time_delta = $time_delta / (float)60 / (float)$cpu_larger * (float)100;
 	}
-	if($time_delta >= 101) {
+	if($time_delta >= 101 || $time_delta < 0) {
 		$time_delta = 0;//fail
 	}
 	

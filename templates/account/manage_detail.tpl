@@ -76,6 +76,13 @@
             
         </figure>
         </div>
+        
+        <div class="container card card-whitenb" style='min-height:360px' id="chart3">
+            <figure class="highcharts-figure">
+            <div id="container3"></div>
+            
+        </figure>
+        </div>
     </div>
 </div>
 </section>
@@ -215,10 +222,73 @@ var chart2 = Highcharts.getJSON(
         });
     }
 );
+
+var chart2 = Highcharts.getJSON(
+    "/ajax/stats?ajax=true&method=netstats_get&vm_id="+vm_id,
+    function (data) {
+
+        Highcharts.chart('container3', {
+    chart: {
+        type: 'spline',
+        width: $("#chart3").width()
+    },
+    title: {
+        text: 'Network Statistics'
+    },
+    xAxis: {
+                type: 'datetime'
+            },
+    yAxis: {
+        title: {
+            text: 'Network KB'
+        },
+        min: 0
+    },
+    tooltip: {
+        headerFormat: '<b>{series.name}</b><br>',
+        pointFormat: '{point.x:%e. %b}: {point.y:.2f} KB'
+    },
+
+    plotOptions: {
+        series: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    colors: ['#6CF', '#06C', '#036', '#000'],
+
+    // Define the data points. All series have a dummy year
+    // of 1970/71 in order to be compared on the same x axis. Note
+    // that in JavaScript, months start at 0 for January, 1 for February etc.
+    series: data,
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 800
+            },
+            chartOptions: {
+                plotOptions: {
+                    series: {
+                        marker: {
+                            radius: 2.5
+                        }
+                    }
+                }
+            }
+        }]
+    }
+});
+    }
+);
+
 //chart.setSize($("#chart1").width(), 360, doAnimation = false);
 //chart2.setSize($("#chart2").width(), 360, doAnimation = false);
 
 });
+
 
 function vm_start(vm_id) {
     $.get("/ajax/account?ajax=true&method=account_start_vm&vm_id=" + vm_id, function(data) {

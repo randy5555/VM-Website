@@ -28,7 +28,7 @@ class vm {
 		$obj["command"] = "defineVM";
 		$params = array();
 		$params[] = "vm_".$vid;
-		$params[] = (string)$ram*1024;
+		$params[] = (string)$ram*1024*1024;
 		$params[] = (string)$cpu;
 		$params[] = (string)$os;
 		$params[] = (string)($vid*2)+10000;
@@ -167,6 +167,44 @@ class vm {
 			return array("total"=>$j["total"],"used"=>$j["used"],"percentage"=>$j["percentUsed"]);
 		}
 		return array("total"=>0,"used"=>0,"percentage"=>0);
+	}
+	
+	public static function getNETStat($vm_id) {
+		$server_address = vm::getServerAddress($vm_id);
+		
+		$obj = array();
+		$obj["command"] = "getNETStats";
+		$params = array();
+		$params[] = "vm_".$vm_id;
+		$obj["params"] = $params;
+		$msg = json_encode($obj);
+		
+		//talk to java app
+		$r = common::sendraw($server_address, 9992, $msg);echo $r;
+		$j = json_decode($r, true);
+		if($j["Response"] == "Success") {
+			return array("rx"=> $j["rx"], "tx"=> $j["tx"]);
+		}
+		return array("rx"=> 0, "tx"=> 0);
+	}
+	
+	public static function getDISKStat($vm_id) {
+		$server_address = vm::getServerAddress($vm_id);
+		
+		$obj = array();
+		$obj["command"] = "getDISKStats";
+		$params = array();
+		$params[] = "vm_".$vm_id;
+		$obj["params"] = $params;
+		$msg = json_encode($obj);
+		
+		//talk to java app
+		$r = common::sendraw($server_address, 9992, $msg);echo $r;
+		$j = json_decode($r, true);
+		if($j["Response"] == "Success") {
+			return array("reads"=> $j["reads"], "writes"=> $j["writes"], "readbytes"=> $j["readbytes"], "writebytes"=> $j["writebytes"]);
+		}
+		return array("reads"=> 0, "writes"=> 0, "readbytes"=> 0, "writebytes"=> 0);
 	}
 	
 	public static function startconsole($vm_id) {

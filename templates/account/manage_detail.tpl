@@ -59,7 +59,7 @@
                     <td><div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="#" onclick="vm_stop('{$vm.vm_id}');"><font face="MobiriseIcons"><br></font>Power off<br></a></div></td>
                     <td><div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="#" onclick="vm_shutdown('{$vm.vm_id}');"><font face="MobiriseIcons"><br></font>Shut down<br></a></div></td>
                     <td><div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-warning display-4" href="#" onclick="vm_destroy('{$vm.vm_id}');"><font face="MobiriseIcons"><br></font>Destroy<br></a></div></td>
-                    <td><div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-info display-4" href="#" onclick="vm_console('{$vm.vm_id}');"><font face="MobiriseIcons"><br></font>Console<br></a></div></td>
+                    <td><div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-info display-4" href="/noVNC-1.1.0/vnc.html?&host=analogocean.afxr.net&port={$vmport}&password=asouihfdiuk&encrypt=false&path=" target="_new"><font face="MobiriseIcons"><br></font>Console<br></a></div></td>
                 </tr>
             </table>
         </div>

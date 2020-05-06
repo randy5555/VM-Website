@@ -14,6 +14,7 @@ if(!empty($record) && is_numeric($record)) {
 		$vm = $row;
 	}
 	$smarty->assign("vm",$vm);
+	$smarty->assign("vmport",($vm["vm_id"]*2)+10001);
 	
 	$smarty->display("account/manage_detail.tpl");
 } else {
